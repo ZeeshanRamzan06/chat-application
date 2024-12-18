@@ -3,20 +3,20 @@ import Navbar from './components/Navbar'
 import { Routes ,Route, Navigate} from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import SignUpPage from './pages/SignUpPage'
-import SignInPage from './pages/SignInPage'
-import SittingPage from './pages/SittingPage'
-import ProfilePic from './pages/ProfilePic'
-import { UseAuthStore } from './store/UseAuthStore.js'
+import SettingPage from './pages/SettingPage'
+import ProfilePage from './pages/ProfilePage.jsx'
+import { useAuthStore } from './store/useAuthStore.js'
 import { Loader } from 'lucide-react'
-
+import {Toaster} from 'react-hot-toast'
+import LoginPage from './pages/LogInPage.jsx'
+import { useThemeStore } from './store/useThemeStore.js'
 const App = () => {
-  const {useAuth , checkAuth, isCheckingAuth} = UseAuthStore()
-
+  const {authUser , checkAuth, isCheckingAuth} = useAuthStore()
+  const { theme } = useThemeStore();
   useEffect(()=>{
     checkAuth();
 
   },[checkAuth])
-  console.log(checkAuth)
 
   if(!isCheckingAuth && !checkAuth)
     return(
@@ -25,18 +25,19 @@ const App = () => {
       </div>
     );
   return (
-    <div >
+    <div data-theme={theme} >
+    <Navbar />
 
-      <Navbar/>
-      <Routes>
-        <Route path='/' element={useAuth? <HomePage />: <Navigate to='/login'/>}/>
-        <Route path='/signup' element={!useAuth?  <SignUpPage /> : <Navigate to='/'/>}/>
-        <Route path='/login' element={!useAuth? <SignInPage /> : <Navigate to='/'/>}/>
-        <Route path='/sittings' element={<SittingPage />}/>
-        <Route path='/profile' element={useAuth? <ProfilePic /> : <Navigate to='/login'/> }/>
-      </Routes>
-   
-    </div>
+    <Routes>
+      <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
+      <Route path="/signup" element={!authUser ? <SignUpPage /> : <Navigate to="/" />} />
+      <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to="/" />} />
+      <Route path="/settings" element={<SettingPage />} />
+      <Route path="/profile" element={authUser ? <ProfilePage /> : <Navigate to="/login" />} />
+    </Routes>
+
+    <Toaster />
+  </div>
   )
 }
 
