@@ -53,7 +53,6 @@ export const sendMessages = async (req,res) =>{
         })
     
         await newMessage.save();
-    // reatime functionality using socket.io
 
     const receiverSocketId = getReceiverSocketId(receiverId)
     if(receiverSocketId){
@@ -61,7 +60,7 @@ export const sendMessages = async (req,res) =>{
     }
         res.status(200).json(newMessage)
     } catch (error) {
-        console.log("Error in sendMessage controler" ,error.message)
+        console.log("Error in sendMessage controller" ,error.message)
         res.status(500).json({error:"Internal Server Message"})
 
     }
