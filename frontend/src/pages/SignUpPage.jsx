@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import AuthImagePattern from "../components/AuthImagePattern";
 import toast from "react-hot-toast";
+import { useAuthStore } from "../store/useAuthStore";
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
