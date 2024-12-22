@@ -9,7 +9,7 @@ import { Loader } from 'lucide-react'
 import {Toaster} from 'react-hot-toast'
 import LoginPage from './pages/LogInPage.jsx'
 import { useThemeStore } from './store/useThemeStore.js'
-import useAuthStore from './store/useAuthStore.js'
+import useAuthStore from './store/useAuthStore.js';
 
 const App = () => {
   const {authUser , checkAuth, isCheckingAuth} = useAuthStore();
