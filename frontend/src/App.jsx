@@ -9,7 +9,8 @@ import { Loader } from 'lucide-react'
 import {Toaster} from 'react-hot-toast'
 import { useThemeStore } from './store/useThemeStore.js'
 import useAuthStore from './store/useAuthStore.js';
-import LogInPage from './pages/LogInPage.jsx'
+import LogInPage from './pages/LoginPage.jsx'
+
 
 const App = () => {
   const {authUser , checkAuth, isCheckingAuth} = useAuthStore();
