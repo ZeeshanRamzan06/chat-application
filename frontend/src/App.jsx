@@ -9,24 +9,28 @@ import LoginPage from './pages/LoginPage.jsx'
 import { Loader } from 'lucide-react'
 import {Toaster} from 'react-hot-toast'
 import { useThemeStore } from './store/useThemeStore.js'
-import useAuthStore from './store/useAuthStore.js';
+import {useAuthStore} from './store/useAuthStore.js';
 
 
 
 const App = () => {
-  const {authUser , checkAuth, isCheckingAuth} = useAuthStore();
+  const { authUser, checkAuth, isCheckingAuth, onlineUsers } = useAuthStore();
   const { theme } = useThemeStore();
-  useEffect(()=>{
+  console.log({onlineUsers})
+
+   useEffect(() => {
     checkAuth();
+  }, [checkAuth]);
 
-  },[checkAuth])
+  console.log({ authUser });
 
-  if(!isCheckingAuth && !checkAuth)
-    return(
-      <div className='flex items-center justify-center h-screen'>
-        <Loader className='size-10 animate-spin'/>
+  if (isCheckingAuth && !authUser)
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Loader className="size-10 animate-spin" />
       </div>
     );
+
   return (
     <div data-theme={theme} >
     <Navbar />
