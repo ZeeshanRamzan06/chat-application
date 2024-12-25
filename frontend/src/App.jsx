@@ -5,11 +5,12 @@ import HomePage from './pages/HomePage'
 import SignUpPage from './pages/SignUpPage'
 import SettingPage from './pages/SettingPage'
 import ProfilePage from './pages/ProfilePage.jsx'
+import LoginPage from './pages/LoginPage.jsx'
 import { Loader } from 'lucide-react'
 import {Toaster} from 'react-hot-toast'
 import { useThemeStore } from './store/useThemeStore.js'
 import useAuthStore from './store/useAuthStore.js';
-import LogInPage from './pages/LoginPage.jsx'
+
 
 
 const App = () => {
@@ -33,7 +34,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
       <Route path="/signup" element={!authUser ? <SignUpPage /> : <Navigate to="/" />} />
-      <Route path="/login" element={!authUser ? <LogInPage /> : <Navigate to="/" />} />
+      <Route path="/login" element={!authUser ? <LoginPage/> : <Navigate to="/" />} />
       <Route path="/settings" element={<SettingPage />} />
       <Route path="/profile" element={authUser ? <ProfilePage /> : <Navigate to="/login" />} />
     </Routes>
